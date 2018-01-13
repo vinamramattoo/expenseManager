@@ -2,6 +2,7 @@ package com.vinamra.expenseManager.controller;
 
 
 import com.vinamra.expenseManager.domain.ExpenseVo;
+import com.vinamra.expenseManager.domain.UpdateExpenses;
 import com.vinamra.expenseManager.entity.Expenses;
 import com.vinamra.expenseManager.service.RestWebServices;
 import org.slf4j.Logger;
@@ -39,14 +40,13 @@ public class RestWebController {
     @ResponseBody
     public void add(@RequestBody ExpenseVo expenseVo) {
        LOG.info("reached add function");
-       LOG.info("reached add function\n \n \n " +expenseVo);
         restWebServices.addExpense(expenseVo);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public void edit(@RequestBody Expenses expenses) {
-        restWebServices.editExpense(expenses);
+    public void edit(@RequestBody UpdateExpenses updateExpenses) {
+        restWebServices.editExpense(updateExpenses);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class RestWebController {
 
 
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void remove(@PathVariable("id")Integer id) {
         restWebServices.deleteExpense(id);

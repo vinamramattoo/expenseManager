@@ -2,6 +2,7 @@ package com.vinamra.expenseManager.service;
 
 
 import com.vinamra.expenseManager.domain.ExpenseVo;
+import com.vinamra.expenseManager.domain.UpdateExpenses;
 import com.vinamra.expenseManager.entity.Expenses;
 import com.vinamra.expenseManager.repository.CategoryRepository;
 import com.vinamra.expenseManager.repository.ExpensesRepository;
@@ -26,9 +27,7 @@ public class RestWebServicesImpl implements  RestWebServices{
 
     @Override
     public void addExpense(ExpenseVo expenseVo) {
-        LOG.info("reached inner function");
         Date date = new Date();
-        LOG.info("date is"+date);
         Expenses expenses = new Expenses();
         expenses.setName(expenseVo.getName());
         expenses.setAmount(expenseVo.getAmount());
@@ -46,19 +45,18 @@ public class RestWebServicesImpl implements  RestWebServices{
     }
 
     @Override
-    public void editExpense(Expenses expenses1) {
+    public void editExpense(UpdateExpenses updateExpenses) {
         Date date = new Date();
-        Expenses expenses = getExpense(expenses1.getId());
-
-        expenses.setName(expenses1.getName());
-        expenses.setAmount(expenses1.getAmount());
-        expenses.setDetails(expenses1.getDetails());
+        Expenses expenses = getExpense(updateExpenses.getId());
+        expenses.setName(updateExpenses.getName());
+        expenses.setAmount(updateExpenses.getAmount());
+        expenses.setDetails(updateExpenses.getDetails());
+        expenses.setUpdated_on(updateExpenses.getUpdatedOn());
 
         //TODO :: hardcoded values for mini project
         expenses.setCreated_by(1);
         expenses.setCreated_on(date);
         expenses.setUpdated_by(1);
-        expenses.setUpdated_on(date);
 
         expensesRepository.save(expenses);
     }
