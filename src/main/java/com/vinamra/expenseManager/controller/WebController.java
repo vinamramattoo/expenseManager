@@ -1,3 +1,4 @@
+/*
 package com.vinamra.expenseManager.controller;
 
 
@@ -45,4 +46,4 @@ public class WebController {
     public void remove(@PathVariable("id")Integer id) {
         restWebServices.deleteExpense(id);
     }
-}
+}*/
