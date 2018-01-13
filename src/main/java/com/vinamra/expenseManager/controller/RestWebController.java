@@ -26,16 +26,6 @@ public class RestWebController {
         this.restWebServices = restWebServices;
     }
 
-
-
-
-
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    @ResponseBody
-    public String test() {
-       return "add";
-    }
-
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public void add(@RequestBody ExpenseVo expenseVo) {

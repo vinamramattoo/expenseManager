@@ -23,6 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+        // cross site disabled this is so hackable LOL
+        http.csrf().disable();
     }
 
     @Autowired
