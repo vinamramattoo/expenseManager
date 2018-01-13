@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:score="http://thymeleafexamples">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -19,7 +19,22 @@
 
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-inverse fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../">Expense Manager</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="../">Home</a></li>
+            <li><a href="../add.html/">Add New Expense</a></li>
+            <li style="float: right;" class="nav-item">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-sm btn-danger nav-link js-scroll-trigger" value="Log Out"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="mylist-container" id="page-wrapper" style="width: 950px;">
 
     <div class="col-sm-offset-3 col-md-12" style="width: 105%;">
