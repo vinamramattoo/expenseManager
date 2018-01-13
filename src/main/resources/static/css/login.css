@@ -1,0 +1,9 @@
+body{
+    background: url(http://mymaplist.com/img/parallax/back.png);
+	background-color: #444;
+    background: url(http://nie-images.s3.amazonaws.com/gall_content/2017/9/2017_9$ugcphoto118_Monday_2017_174327311.jpg),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);
+}
+
+.vertical-offset-100{
+    padding-top:100px;
+}
