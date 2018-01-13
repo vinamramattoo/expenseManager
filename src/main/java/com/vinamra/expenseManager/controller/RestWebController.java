@@ -1,29 +1,51 @@
-/*
 package com.vinamra.expenseManager.controller;
 
 
 import com.vinamra.expenseManager.domain.ExpenseVo;
 import com.vinamra.expenseManager.entity.Expenses;
 import com.vinamra.expenseManager.service.RestWebServices;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class WebController {
+public class RestWebController {
 
-    private RestWebServices restWebServices;
+    private static final Logger LOG = LoggerFactory.getLogger(RestWebController.class);
+
+    private final RestWebServices restWebServices;
+
+    @Autowired
+    public RestWebController(@Qualifier("restWebServicesImpl") RestWebServices restWebServices) {
+        this.restWebServices = restWebServices;
+    }
+
+
+
+
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String test() {
+       return "add";
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public void add(ExpenseVo expenseVo) {
+    public void add(@RequestBody ExpenseVo expenseVo) {
+       LOG.info("reached add function");
+       LOG.info("reached add function\n \n \n " +expenseVo);
         restWebServices.addExpense(expenseVo);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public void edit(Expenses expenses) {
+    public void edit(@RequestBody Expenses expenses) {
         restWebServices.editExpense(expenses);
     }
 
@@ -46,4 +68,4 @@ public class WebController {
     public void remove(@PathVariable("id")Integer id) {
         restWebServices.deleteExpense(id);
     }
-}*/
+}

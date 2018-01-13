@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:score="http://thymeleafexamples">
+
+
 <head>
 
-    <link href="../static/css/red.css" th:href="@{/css/red.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
 
 </head>
-<h1>A heading</h1>
-<p>A paragraph.</p>
+<body>
 
+<h1>Welcome to Expense manager</h1>
+<br>click below to go start saving ..<br>
+
+<a href="home" id="btn" class="btn btn-primary">Start!</a>
+<script>
+ $(document).ready(function(){
+    $("#btn").click(function(){
+        alert("The paragraph was clicked.");
+    });
+});
+</script>
+</body>
 
 </html>

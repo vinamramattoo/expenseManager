@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="text-align:center">Expense Manager</h1>
+    <h2>Add expense</h2>
+
+
+        <div class="form-group">
+            <label for="ename">Expense Name:</label>
+            <input  required type="text" class="form-control" id="ename" placeholder="Enter name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="amount">Expense Amount:</label>
+            <input required type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount">
+        </div>
+        <div class="form-group">
+            <label for="details">Expense Details:</label>
+            <textarea class="form-control" id="details" placeholder="Enter details" name="details"></textarea>
+        </div>
+
+        <button  type="submit" id="submit" class="btn btn-default">Submit</button>
+
+</div>
+<script>
+    $("#submit").click(function(){
+        if(!$("#ename").val() || !$("#amount").val()){
+            alert("Invalid name/value");
+        }else {
+            item = {};
+            item ["name"] = $("#ename").val();
+            item ["amount"] = $("#amount").val();
+            item ["details"] = $("#details").val();
+console.log(JSON.stringify(item));
+            $.ajax({
+                url: "./rest/add",
+                type: 'POST',
+                data: JSON.stringify(item),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                  alert("success!!");
+                }
+            });
+        }
+    });
+
+</script>
+
+<!--<script>
+    function submit(){
+            item = {};
+            item ["name"] = $("#ename").val();
+            item ["amount"] = $("#amount").val();
+            item ["details"] = $("#details").val();
+
+        $.ajax({
+            url: './rest/add',
+            type: 'POST',
+            data: JSON.stringify(item),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function(msg) {
+                alert(msg);
+            }
+        });
+    }
+
+</script>-->
+
+<!--<script>
+    function ConvertFormToJSON(form){
+        var array = jQuery(form).serializeArray();
+        var json = {};
+
+        jQuery.each(array, function() {
+            json[this.name] = this.value || '';
+        });
+
+        return json;
+    }
+
+    jQuery(document).on('ready', function() {
+        jQuery('form#ajaxform').bind('submit', function(event){
+            event.preventDefault();
+
+            var form = this;
+            var json = ConvertFormToJSON(form);
+
+            $.ajax({
+                type: "POST",
+                url: "./rest/add",
+                data: json,
+                dataType: "json"
+            }).done(function() {
+                alert("sucessful");
+            }).fail(function() {
+                alert("Failed to add ");
+            });
+
+            return true;
+        });
+    });
+</script>-->
+
+</body>
+</html>

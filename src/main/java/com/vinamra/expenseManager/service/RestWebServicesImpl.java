@@ -5,6 +5,8 @@ import com.vinamra.expenseManager.domain.ExpenseVo;
 import com.vinamra.expenseManager.entity.Expenses;
 import com.vinamra.expenseManager.repository.CategoryRepository;
 import com.vinamra.expenseManager.repository.ExpensesRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -14,6 +16,7 @@ import java.util.List;
 @Service
 @Transactional
 public class RestWebServicesImpl implements  RestWebServices{
+    private static final Logger LOG = LoggerFactory.getLogger(RestWebServicesImpl.class);
 
     @Autowired
     CategoryRepository categoryRepository;
@@ -23,8 +26,9 @@ public class RestWebServicesImpl implements  RestWebServices{
 
     @Override
     public void addExpense(ExpenseVo expenseVo) {
+        LOG.info("reached inner function");
         Date date = new Date();
-
+        LOG.info("date is"+date);
         Expenses expenses = new Expenses();
         expenses.setName(expenseVo.getName());
         expenses.setAmount(expenseVo.getAmount());
